@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
+import csv
+import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import Dataset
-import numpy as np
-import csv
+
 
 class RedditNewsDJIADataset(Dataset):
 
@@ -12,10 +13,13 @@ class RedditNewsDJIADataset(Dataset):
         self.train = train
         self.trainSplit = trainSplit
         self.transform = transform
-        #split = self.trainSplit * 
+        self.dataFrame = pd.read_csv(csvFile)
+        trainSize = int(self.dataFrame.shape[0] * self.trainSplit)
 
         if self.train:
-            self.dataFrame = pd.read_csv(csvFile)
+            self.dataFrame = self.dataFrame[:trainSize]
+        else:
+            self.dataFrame = self.dataFrame[trainSize:]
 
     def __len__(self):
         return len(self.dataFrame)
@@ -26,7 +30,7 @@ class RedditNewsDJIADataset(Dataset):
 
         label = self.dataFrame.Label.values[index]
         features = self.dataFrame.iloc[index,2:].values
-        features = np.char.strip(np.asarray(features,dtype=str),chars='b\'\"')
+        features = np.asarray(features,dtype=str)
         sample = {'label': label, 'features': features}
 
         if self.transform:
@@ -51,31 +55,29 @@ class CleanRedditNewsDJIA:
 
     def cleanUp(self):
 
-        #l = self.fileName[:-4] + '_clean' + self.fileName[-4:]
-        print('test',chr(10),'test')
-        
-        formatted = []
-        flag = True
         with open(self.fileName) as f:
             reader = csv.reader(f)
+            formattedDoc = []
+
             for row in reader:
-                index = 0
-                flag = True
-                while flag:
-                    try:
-                        index = row.index(chr(10),index)
-                        print(ord(row[index-1]), ord(row[index]))
-                        if row[index-1] != chr(13):
-                            del row[index]
-                            index -= 1
-                        else:
-                            index += 1
-                    except (ValueError, IndexError) as err:
-                        flag = False
-                        formatted.append(row)
-        
+                formattedRow = []
+
+                for feature in row:
+                    feature = feature.replace('\r','')
+                    feature = feature.replace('\n','')
+                    feature = feature.replace('\t','')
+                    feature = feature.replace('\\r','')
+                    feature = feature.replace('\\n','')
+                    feature = feature.replace('\\t','')
+                    feature = feature.replace('\\','')
+                    feature = feature.strip('\'\"b ')
+                    feature = feature.strip('\'\"')
+                    formattedRow.append(feature)
+
+                formattedDoc.append(formattedRow)
+
         with open(self.fileName[:-4] + '_clean' + self.fileName[-4:], 'w', newline='') as f:
             writer = csv.writer(f)
-            for row in formatted:
+            for row in formattedDoc:
                 writer.writerow(row)
         

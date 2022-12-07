@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
 import csv
+import sys
 import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import Dataset
-
+import contractions
+import string
+from nltk.corpus import stopwords
 
 class RedditNewsDJIADataset(Dataset):
 
@@ -80,4 +83,57 @@ class CleanRedditNewsDJIA:
             writer = csv.writer(f)
             for row in formattedDoc:
                 writer.writerow(row)
+
+
+class CleanData:
+
+    def __init__(self, fileName: str, cleanColumns: list):
+        self.fileName = fileName
+        self.cleanColumns = cleanColumns
+
+    def cleanUp(self):
+        csv.field_size_limit(int(sys.maxsize/10000000000))
+        print(int(sys.maxsize/10000000000))
+        sw_nltk = []
+        sw_nltk = stopwords.words('english')
+        #print(sw_nltk)
+        if 'not' in sw_nltk:
+            sw_nltk.remove('not')
+
+        with open(self.fileName, encoding="utf-8") as f:
+            reader = csv.reader(f)
+            formattedDoc = []
+
+            for row in reader:
+                formattedRow = []
+
+                for column, feature in enumerate(row):
+                    if column in self.cleanColumns:
+                        feature = contractions.fix(feature)
+                        feature = feature.replace('\r','')
+                        feature = feature.replace('\n','')
+                        feature = feature.replace('\t','')
+                        feature = feature.replace('\\r','')
+                        feature = feature.replace('\\n','')
+                        feature = feature.replace('\\t','')
+                        feature = feature.replace('\\','')
+                        feature = feature.strip('\'\"b ')
+                        feature = feature.strip('\'\"')
+                        feature = feature.lower()
+                        feature = feature.replace('$',' money ')
+                        #feature = contractions.fix(feature)
+                        spaces = str(' ' * len(string.punctuation))
+                        feature = feature.translate(str.maketrans(string.punctuation,spaces))
+                        feature = ' '.join(feature.split())
+                        feature = ' '.join([word for word in feature.split() if not word in sw_nltk])
+
+                    formattedRow.append(feature)
+
+                formattedDoc.append(formattedRow)
+
+        with open(self.fileName[:-4] + '_clean' + self.fileName[-4:], 'w', encoding='utf-8', newline='') as f:
+            writer = csv.writer(f)
+            for row in formattedDoc:
+                writer.writerow(row)
+        
         

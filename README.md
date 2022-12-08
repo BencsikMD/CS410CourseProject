@@ -72,7 +72,9 @@ Then run the notebook! I would suggest using a small number for `epochs` as the 
 
 ### RNN
 
-
+Show differences of RNN notebook
+Save model for demo?
+Show how to run on Colab? Add flag for Colab or Local machine?
 
 
 

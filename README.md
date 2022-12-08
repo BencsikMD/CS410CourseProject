@@ -2,9 +2,11 @@
 
 This ReadMe is the documentation for the CS410 class project.
 
-[Video Presentation Link](https://drive.google.com/file/d/1s1JghaXXxCa3Itg97BQNOT3ILO6--6XW/view?usp=share_link)
+**TLDR** 
 
-**TLDR** The video presentation explains how to install and use the libraries included in the project. If you do not have the ability to perform these operations, [here is a link](https://colab.research.google.com/drive/1NsvL0vMhW-IumluK2sKA9A0taZoewGD4?usp=share_link) for a public demo of the project. It does not include the many datasets discussed in the video presentation, but does allow for the model to be tweaked.
+The video presentation explains how to install and use the libraries included in the project. If you do not have the ability to perform these operations, [here is a link](https://colab.research.google.com/drive/1NsvL0vMhW-IumluK2sKA9A0taZoewGD4?usp=share_link) for a public Colab demo of the RNN model. It does not include the many datasets discussed in the video presentation, but does allow the RNN model to be demonstrated. Select `Runtime`, then `Run all`.
+
+[Video Presentation Link](https://drive.google.com/file/d/1s1JghaXXxCa3Itg97BQNOT3ILO6--6XW/view?usp=share_link)
 
 ## Group Info
 
@@ -60,6 +62,10 @@ Below is a list of libraries and toolkits that need to be installed to use the n
 | TensorFlow Datsets | 4.7.0 | No | pip install tensorflow-datasets |
 | Matplotlib | 3.6.2 | Yes | pip install matplotlib |
 | Numpy | 1.23.4 | Yes | pip install numpy |
+
+```
+pip install contractions nltk pandas tensorflow==2.10.0 tensorflow-hub tensorflow-text tensorflow-datasets matplotlib numpy
+```
 
 Depending on you OS and setup, you may have to use:
 

@@ -15,7 +15,7 @@ from nltk.corpus import stopwords
     cleanColumns: a list of which columns to run the cleaning on. Ex: [0,3,7]
                     Cleaning should not be ran on all columns such as Date, Time, Non-text, etc. 
 
-    If text was read in as bytes in python, the text will contain extra escape charaters
+    If text was read in as bytes in python, the text will contain extra escape characters
     such as \r, \n, \t, etc. Escape chars are removed. Contractions are broken out into words.
     $ symbols are replaced with the word 'money'. Punctuation is removed. Case is lowered. 
     Stop words are removed using NLTK's library
@@ -28,7 +28,7 @@ class CleanData:
         self.cleanColumns = cleanColumns
 
     def cleanUp(self):
-        # needed to increase max cloumn size for large documents in csv
+        # needed to increase max column size for large documents in csv
         csv.field_size_limit(int(sys.maxsize/10000000000))
 
         sw_nltk = []

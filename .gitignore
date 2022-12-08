@@ -1,2 +1,5 @@
 /Code/.venv
 /Code/__pycache__
+.vscode
+/Data/us_*
+Video*

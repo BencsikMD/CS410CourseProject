@@ -2,6 +2,10 @@
 
 This ReadMe is the documentation for the CS410 class project.
 
+[Video Presentation Link](https://drive.google.com/file/d/1s1JghaXXxCa3Itg97BQNOT3ILO6--6XW/view?usp=share_link)
+
+**TLDR** The video presentation explains how to install and use the libraries included in the project. If you do not have the ability to perform these operations, [here is a link](https://colab.research.google.com/drive/1NsvL0vMhW-IumluK2sKA9A0taZoewGD4?usp=share_link) for a public demo of the project. It does not include the many datasets discussed in the video presentation, but does allow for the model to be tweaked.
+
 ## Group Info
 
 | Number | Name | ID |
@@ -10,7 +14,9 @@ This ReadMe is the documentation for the CS410 class project.
 
 ## Free Topic
 
-The goal was to classify news headlines and/or articles as either having positive or negative sentiment using the increase or decrease of the market price as the model's label.  
+The goal was to use existing tool kits to classify news headlines and/or articles as either having positive or negative sentiment using the increase or decrease of the market price as the model's label.  
+
+The main tool kit chosen was TensorFlow. This project is an explanation and example of the usage of the TensorFlow API.
 
 ## Overview
 

@@ -69,6 +69,7 @@ Make sure pip is up to date:
 The dataset that was used for individual stock news is too large for a free GitHub account. Below are the links to the original and the cleaned version. You do not need to download as there are already cleaned up datasets in the repository for some examples.
 
 [us_equities_news_dataset.csv](https://drive.google.com/file/d/1MSc4Biirl-zCWTar4xi-FPE40M4h1gea/view?usp=share_link)
+
 [us_equities_news_dataset_clean.csv](https://drive.google.com/file/d/1mekdVwy_cl4HDfg66psoWq55NM5M6SBy/view?usp=share_link)
 
 ### Data Clean Up

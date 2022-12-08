@@ -50,6 +50,7 @@ Below is a list of libraries and toolkits that need to be installed to use the n
 | Pandas | 1.5.1 | Yes | pip install pandas |
 | TensorFlow | 2.10.0 | Yes | pip install tensorflow==2.10.0 |
 | TensorFlow Hub | 0.12.0 | Yes | pip install tensorflow-hub |
+| TensorFlow Text | 2.10.0 | Yes | pip install tensorflow-text |
 | TensorFlow Datsets | 4.7.0 | No | pip install tensorflow-datasets |
 | Matplotlib | 3.6.2 | Yes | pip install matplotlib |
 | Numpy | 1.23.4 | Yes | pip install numpy |
